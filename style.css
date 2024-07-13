@@ -6,12 +6,14 @@ body {
     background-color: rgb(255, 248, 220);
     background-size: cover;
 }
+
 /* Background for the whole site */
 
 #headlineBox {
     border: 0;
     background-color: rgba(255, 255, 255, 0.5);
 }
+
 /* Makes the input boxes semi transparent  */
 #deadlineBox {
     background-color: rgba(255, 255, 255, 0.5);
@@ -24,6 +26,7 @@ h1 {
     font-size: 50px;
     margin-bottom: 0;
 }
+
 /* Headline */
 
 .containerInputDiv {
@@ -44,7 +47,7 @@ h1 {
     padding-bottom: 15px;
 }
 
-.boardDivDiv{
+.boardDivDiv {
     display: flex;
     justify-content: center;
 }
@@ -65,7 +68,7 @@ h1 {
     padding: 20px;
     display: none;
     vertical-align: top;
-    
+
 }
 
 .noteDeadline {
@@ -100,8 +103,10 @@ h1 {
     min-height: 150px;
     max-height: 280px;
     position: relative;
-    min-height: 50px;  /* for short notes */
-    max-height: 280px; /* for long notes */
+    min-height: 50px;
+    /* for short notes */
+    max-height: 280px;
+    /* for long notes */
     justify-content: space-around;
     flex-grow: 0;
 }
@@ -117,7 +122,7 @@ h1 {
     max-height: 300px;
     width: 100%;
     margin-bottom: 10px;
-    word-wrap:normal; 
+    word-wrap: normal;
 }
 
 .noteBottom {

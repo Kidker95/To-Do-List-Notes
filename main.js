@@ -24,11 +24,11 @@ function getNote() {
 function formatDateTime(dateTime) {
   const date = new Date(dateTime);
   // The english format is hh:mm dd/mm/yyyy
-  const formattedDate = date.toLocaleDateString("en-GB"); 
+  const formattedDate = date.toLocaleDateString("en-GB");
   const formattedTime = date.toLocaleTimeString("en-GB", {
     hour: "2-digit",
     minute: "2-digit",
-  }); 
+  });
   return `${formattedTime}, ${formattedDate}`;
 }
 
@@ -62,8 +62,8 @@ function displayNotes(allNotes) {
     </div>
     </div>`;
   }
-  boardDiv.innerHTML = html; 
-//   If arr allNotes is empty, undisplay the board. one liner style!
+  boardDiv.innerHTML = html;
+  //   If arr allNotes is empty, undisplay the board. one liner style!
   boardDiv.style.display = allNotes.length > 0 ? "flex" : "none";
 }
 
