@@ -1,0 +1,139 @@
+html,
+body {
+    height: 0%;
+    margin: 0;
+    text-align: center;
+    background-color: rgb(255, 248, 220);
+    background-size: cover;
+}
+/* Background for the whole site */
+
+#headlineBox {
+    border: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+/* Makes the input boxes semi transparent  */
+#deadlineBox {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 0;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    margin-bottom: 0;
+}
+/* Headline */
+
+.containerInputDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+.inputsDiv {
+    background-image: url('assets/inputDivBackground.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 1200px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.boardDivDiv{
+    display: flex;
+    justify-content: center;
+}
+
+
+#boardDiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+    background-image: url('assets/cork_background.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 10px solid #d1b45b;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    display: none;
+    vertical-align: top;
+    
+}
+
+.noteDeadline {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.deleteButtonDiv {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+}
+
+.deleteButtonDiv img {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+}
+
+
+
+.note {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 248, 220);
+    border-radius: 10px;
+    margin: 15px;
+    padding: 15px;
+    width: 280px;
+    min-height: 150px;
+    max-height: 280px;
+    position: relative;
+    min-height: 50px;  /* for short notes */
+    max-height: 280px; /* for long notes */
+    justify-content: space-around;
+    flex-grow: 0;
+}
+
+.noteHeadline {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.noteContent {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 300px;
+    width: 100%;
+    margin-bottom: 10px;
+    word-wrap:normal; 
+}
+
+.noteBottom {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 35px;
+}
+
+textarea {
+    width: 200px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 0;
+}
+
+footer {
+    padding-top: 10px;
+}
