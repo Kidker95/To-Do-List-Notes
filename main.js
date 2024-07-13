@@ -63,7 +63,7 @@ function displayNotes(allNotes) {
     </div>`;
   }
   boardDiv.innerHTML = html;
-  //   If arr allNotes is empty, undisplay the board. one liner style!
+  //   If arr allNotes is empty, un-display the board. one liner style!
   boardDiv.style.display = allNotes.length > 0 ? "flex" : "none";
 }
 

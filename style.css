@@ -44,7 +44,7 @@ h1 {
     background-repeat: no-repeat;
     width: 1200px;
     padding-top: 15px;
-    padding-bottom: 15px;
+    padding-bottom: 15px; 
 }
 
 .boardDivDiv {
@@ -68,7 +68,6 @@ h1 {
     padding: 20px;
     display: none;
     vertical-align: top;
-
 }
 
 .noteDeadline {
@@ -99,21 +98,20 @@ h1 {
     border-radius: 10px;
     margin: 15px;
     padding: 15px;
-    width: 280px;
+    width: 300px;
     min-height: 150px;
-    max-height: 280px;
+    max-height: 300px;
     position: relative;
-    min-height: 50px;
-    /* for short notes */
-    max-height: 280px;
-    /* for long notes */
     justify-content: space-around;
-    flex-grow: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
 }
 
 .noteHeadline {
     font-weight: bold;
     margin-bottom: 15px;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
 }
 
 .noteContent {
@@ -123,6 +121,7 @@ h1 {
     width: 100%;
     margin-bottom: 10px;
     word-wrap: normal;
+    overflow-wrap: break-word;
 }
 
 .noteBottom {
