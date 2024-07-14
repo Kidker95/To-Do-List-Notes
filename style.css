@@ -4,20 +4,16 @@ body {
     margin: 0;
     text-align: center;
     background-color: rgb(255, 248, 220);
-    background-size: cover;
 }
 
-/* Background for the whole site */
-
-#headlineBox {
+#headlineBox, #deadlineBox, textarea {
     border: 0;
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-/* Makes the input boxes semi transparent  */
-#deadlineBox {
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 0;
+textarea {
+    width: 200px;
+    height: 100px;
 }
 
 h1 {
@@ -25,9 +21,8 @@ h1 {
     font-weight: 700;
     font-size: 50px;
     margin-bottom: 0;
+    padding-top:15px;
 }
-
-/* Headline */
 
 .containerInputDiv {
     display: flex;
@@ -37,21 +32,20 @@ h1 {
     margin-bottom: 20px;
 }
 
-
 .inputsDiv {
     background-image: url('assets/inputDivBackground.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
-    width: 1200px;
+    width: 80%;
     padding-top: 15px;
     padding-bottom: 15px; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .boardDivDiv {
     display: flex;
     justify-content: center;
 }
-
 
 #boardDiv {
     display: flex;
@@ -68,28 +62,8 @@ h1 {
     padding: 20px;
     display: none;
     vertical-align: top;
+    max-width:80%;
 }
-
-.noteDeadline {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-}
-
-.deleteButtonDiv {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-
-}
-
-.deleteButtonDiv img {
-    width: 12px;
-    height: 12px;
-    padding: 0;
-}
-
-
 
 .note {
     display: flex;
@@ -107,11 +81,26 @@ h1 {
     overflow-wrap: break-word; 
 }
 
+.deleteButtonDiv {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.deleteButtonDiv img {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+}
+
 .noteHeadline {
     font-weight: bold;
-    margin-bottom: 15px;
-    word-wrap: break-word; 
-    overflow-wrap: break-word; 
+}
+
+.noteDeadline {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 }
 
 .noteContent {
@@ -131,13 +120,6 @@ h1 {
     padding-top: 35px;
 }
 
-textarea {
-    width: 200px;
-    height: 100px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 0;
-}
-
 footer {
-    padding-top: 10px;
+    padding: 12px;
 }

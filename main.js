@@ -3,6 +3,7 @@ const headlineBox = document.getElementById("headlineBox");
 const contentBox = document.getElementById("contentBox");
 const deadlineBox = document.getElementById("deadlineBox");
 const boardDiv = document.getElementById("boardDiv");
+const noNotesP = document.getElementById("noNotesMSG");
 
 let allNotes = [];
 
@@ -32,7 +33,7 @@ function formatDateTime(dateTime) {
   return `${formattedTime}, ${formattedDate}`;
 }
 
-// Splice specific note from allNotes, deletes it, reshow allNotes
+// Splice specific note from allNotes, deletes it, reshow allNotes, save current notes
 function deleteNote(index) {
   const sure = confirm("Are you sure you want to delete the note?");
   if (!sure) return;
@@ -47,24 +48,26 @@ function displayNotes(allNotes) {
   for (let i = 0; i < allNotes.length; i++) {
     html += `<div class='note'>
     <div class="noteHeadline">
-      ${allNotes[i].headline}
+      <p>${allNotes[i].headline}<p>
     </div>
     <div class="noteContent">
-      ${allNotes[i].content}
+     <p>${allNotes[i].content}</p>
     </div>
     <div class="noteBottom">
-      <div class="noteDeadline">
-        ${allNotes[i].dateTimeFormatted}
+      <div title="Deadline" class="noteDeadline">
+        <p>${allNotes[i].dateTimeFormatted}</p>
       </div>
       <div class='deleteButtonDiv'>
-      <button class='deleteNoteBtn btn btn-outline-danger' onclick='deleteNote(${i})'><img src='assets/xIcon.png'></button>
+      <button title="Delete Note" class='deleteNoteBtn btn btn-outline-danger' onclick='deleteNote(${i})'><img src='assets/xIcon.png'></button>
       </div>
     </div>
     </div>`;
   }
   boardDiv.innerHTML = html;
-  //   If arr allNotes is empty, un-display the board. one liner style!
+  // If arr allNotes is empty, un-display the board
   boardDiv.style.display = allNotes.length > 0 ? "flex" : "none";
+  // if the board has notes, hide empty notes msg
+  noNotesP.style.display = allNotes.length > 0 ? "none" : "block";
 }
 
 // Empties Fields
@@ -74,7 +77,7 @@ function resetNote() {
   deadlineBox.value = ``;
 }
 
-// User can choose to post without headline, content, and deadline
+// User must type in a headline, content, and a deadline
 function validation() {
   if (!headlineBox.value && !contentBox.value && !deadlineBox.value) {
     alert("Can't post an empty note!");
