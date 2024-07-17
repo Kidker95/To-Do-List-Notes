@@ -8,7 +8,7 @@ body {
 
 #headlineBox,
 #deadlineBox,
-textarea {
+textarea, #searchBox {
     border: 0;
     background-color: rgba(255, 255, 255, 0.5);
 }
@@ -44,15 +44,16 @@ h1 {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
+
 .boardDivDiv {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
+
 }
 
 #boardDiv {
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
     gap: 15px;
@@ -87,8 +88,13 @@ h1 {
     bottom: 10px;
     right: 10px;
 }
-
-.deleteButtonDiv img {
+.edit-button{
+    position:relative;
+    left: 70px;
+    top:6px;
+    padding: 0px;
+}
+.edit-button img, .deleteButtonDiv img, .searchIcon{
     width: 12px;
     height: 12px;
     padding: 0;
@@ -116,10 +122,11 @@ h1 {
 
 .noteBottom {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding-top: 35px;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
+
+
 
 footer {
     padding: 12px;

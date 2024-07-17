@@ -3,23 +3,25 @@ const headlineBox = document.getElementById("headlineBox");
 const contentBox = document.getElementById("contentBox");
 const deadlineBox = document.getElementById("deadlineBox");
 const boardDiv = document.getElementById("boardDiv");
-const noNotesP = document.getElementById("noNotesMSG");
+const noNotesH5 = document.getElementById("noNotesMSG");
+const searchBox = document.getElementById("searchBox");
 
 let allNotes = [];
 
-// Get info from user, validate, push to allNotes
+// get info from user, validate, push to allNotes
 function getNote() {
-  const headline = headlineBox.value;
-  const content = contentBox.value;
-  const dateTimeFormatted = formatDateTime(deadlineBox.value);
-  if (!validation()) return;
-
-  const note = { headline, content, dateTimeFormatted };
-  allNotes.push(note);
-  displayNotes(allNotes);
-  saveNotes();
-  noteForm.reset(); // Reset form fields after submission
-}
+    const headline = headlineBox.value;
+    const content = contentBox.value;
+    const dateTimeFormatted = deadlineBox.value ? formatDateTime(deadlineBox.value) : ''; // only format if the user puts a deadline
+    if (!validation()) return;
+  
+    const note = { headline, content, dateTimeFormatted };
+    allNotes.push(note);
+    displayNotes(allNotes);
+    saveNotes();
+    resetNote(); // deletes the input fields after posting the note
+  }
+  
 
 // Time format dd/mm/yy hh:mm
 function formatDateTime(dateTime) {
@@ -34,41 +36,75 @@ function formatDateTime(dateTime) {
 }
 
 // Splice specific note from allNotes, deletes it, reshow allNotes, save current notes
+
 function deleteNote(index) {
-  const sure = confirm("Are you sure you want to delete the note?");
-  if (!sure) return;
-  allNotes.splice(index, 1);
+    const sure = confirm("Are you sure you want to delete the note?");
+    if (!sure) return;
+    allNotes.splice(index, 1);
+    displayNotes(allNotes);
+    saveNotes();
+  }
+  
+
+// to re format the date time back to the input
+function reformatDateTimeForInput(dateTimeFormatted) {
+    // return an empty string if dateTimeFormatted is empty
+    if (!dateTimeFormatted) return '';
+    
+    const [time, date] = dateTimeFormatted.split(', ');
+    const [day, month, year] = date.split('/');
+    const [hours, minutes] = time.split(':');
+
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+}
+
+
+function editNote(index) {
+    const sure = confirm("Are you sure you want to edit note?");
+    if (!sure) return;
+    const note = allNotes[index];
+    headlineBox.value = note.headline;
+    contentBox.value = note.content;
+    // if there isnt a deadline, dont format it
+    deadlineBox.value = note.dateTimeFormatted ? reformatDateTimeForInput(note.dateTimeFormatted) : '';
+    editIndex = index;
+   
+    allNotes.splice(index, 1);
   displayNotes(allNotes);
   saveNotes();
 }
 
+
 // Create div for every note and inject content
-function displayNotes(allNotes) {
-  let html = ``;
-  for (let i = 0; i < allNotes.length; i++) {
-    html += `<div class='note'>
-    <div class="noteHeadline">
-      <p>${allNotes[i].headline}<p>
-    </div>
-    <div class="noteContent">
-     <p>${allNotes[i].content}</p>
-    </div>
-    <div class="noteBottom">
-      <div title="Deadline" class="noteDeadline">
-        <p>${allNotes[i].dateTimeFormatted}</p>
+function displayNotes(notes) {
+    let html = ``;
+    for (let i = 0; i < notes.length; i++) {
+      html += `<div class='note'>
+      <div class="noteHeadline">
+        <p>${notes[i].headline}<p>
       </div>
-      <div class='deleteButtonDiv'>
-      <button title="Delete Note" class='deleteNoteBtn btn btn-outline-danger' onclick='deleteNote(${i})'><img src='assets/xIcon.png'></button>
+      <div class="noteContent">
+       <p>${notes[i].content}</p>
       </div>
-    </div>
-    </div>`;
+      <div class="noteBottom">
+      <div>
+      <button title="Edit Note" onclick="editNote(${i})" class="btn btn-outline-warning edit-button"><img src='assets/pencilIcon.png'></button>
+      </div>
+        <div title="Deadline" class="noteDeadline">
+          <p>${notes[i].dateTimeFormatted}</p>
+        </div>
+        <div class='deleteButtonDiv'>
+        <button title="Delete Note" class='deleteNoteBtn btn btn-outline-danger' onclick='deleteNote(${i})'><img src='assets/xIcon.png'></button>
+        </div>
+      </div>
+      </div>`;
+    }
+    boardDiv.innerHTML = html;
+    boardDiv.style.display = notes.length > 0 ? "flex" : "none";
+    noNotesH5.style.display = notes.length > 0 ? "none" : "block";
+    noNotesH5.innerText = notes.length > 0 ? "" : "No notes available. Add a new note to get started!";
   }
-  boardDiv.innerHTML = html;
-  // If arr allNotes is empty, un-display the board
-  boardDiv.style.display = allNotes.length > 0 ? "flex" : "none";
-  // if the board has notes, hide empty notes msg
-  noNotesP.style.display = allNotes.length > 0 ? "none" : "block";
-}
+  
 
 // Empties Fields
 function resetNote() {
@@ -77,23 +113,23 @@ function resetNote() {
   deadlineBox.value = ``;
 }
 
-// User must type in a headline, content, and a deadline
+// User can choose to post note without a headline,deadline or content
 function validation() {
   if (!headlineBox.value && !contentBox.value && !deadlineBox.value) {
     alert("Can't post an empty note!");
     return false;
   }
   if (!headlineBox.value) {
-    alert(`Can't post a note without a headline!`);
-    return false;
+    const sure = confirm("Are you sure you want to post a note without a headline?")
+    if(!sure) return;
   }
   if (!contentBox.value) {
-    alert(`Can't post a note without content!`);
-    return false;
+    const sure = confirm("Are you sure you want to post a note without content?")
+    if(!sure) return;
   }
   if (!deadlineBox.value) {
-    alert(`Can't Post without a deadline!`);
-    return false;
+    const sure = confirm("Are you sure you want to post a note without a deadline?")
+    if(!sure) return;
   }
   return true;
 }
@@ -109,4 +145,28 @@ function loadNotes() {
   if (!json) return;
   allNotes = JSON.parse(json);
   displayNotes(allNotes);
+}
+
+function searchNote() {
+    const query = searchBox.value.toLowerCase();
+
+    if (query === "") {
+        displayNotes(allNotes);
+        noNotesH5.innerText = allNotes.length > 0 ? "" : "No notes available. Add a new note to get started!";
+        noNotesH5.style.display = allNotes.length > 0 ? "none" : "block";
+        return;
+    }
+
+    const filteredNotes = allNotes.filter(note => 
+        note.content.toLowerCase().includes(query)
+    );
+
+    displayNotes(filteredNotes);
+
+    if (filteredNotes.length === 0) {
+        noNotesH5.innerText = "No notes found with this content!";
+        noNotesH5.style.display = "block";
+    } else {
+        noNotesH5.style.display = "none";
+    }
 }
