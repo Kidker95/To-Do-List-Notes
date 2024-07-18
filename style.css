@@ -83,18 +83,15 @@ h1 {
     overflow-wrap: break-word;
 }
 
-.deleteButtonDiv {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+.noteBottom {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    justify-content:space-around;
+    align-items: center;
 }
-.edit-button{
-    position:relative;
-    left: 70px;
-    top:6px;
-    padding: 0px;
-}
-.edit-button img, .deleteButtonDiv img, .searchIcon{
+
+.searchIcon{
     width: 12px;
     height: 12px;
     padding: 0;
@@ -104,10 +101,19 @@ h1 {
     font-weight: bold;
 }
 
-.noteDeadline {
-    position: absolute;
-    bottom: 3.5px;
-    left: 10px;
+.noteDeadline{
+    margin-top: 15px;
+}
+
+.buttonsBottomDiv{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.noteBottomButton{
+    height:12px
+
 }
 
 .noteContent {
@@ -118,15 +124,8 @@ h1 {
     margin-bottom: 10px;
     word-wrap: normal;
     overflow-wrap: break-word;
+    
 }
-
-.noteBottom {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-
 
 footer {
     padding: 12px;
